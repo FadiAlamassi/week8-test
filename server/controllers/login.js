@@ -24,5 +24,5 @@ exports.postLogin = (req, res) => {
         res.send('Email or Password incorrect');
       }
     })
-    .catch(err => next(err));
+    .catch(err => next(err.message));
 };
