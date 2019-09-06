@@ -5,9 +5,6 @@ const jwt = require('jsonwebtoken');
 require('env2')('config.env');
 
 exports.renderLogin = (req, res, next) => {
-  console.log('asdasdfasdf');
-  console.log(!(req.cookies.login));
-
   if (!req.cookies.login) {
     res.sendFile(join(__dirname, '..', '..', 'public', 'login.html'));
   } else {
@@ -20,7 +17,6 @@ exports.renderLogin = (req, res, next) => {
 };
 
 exports.postLogin = (req, res) => {
-  console.log(!req.cookies.login);
   getUser(req.body.email)
     .then(passwordRows => passwordRows.rows[0].password)
     .then(password => bcrypt.compare(req.body.password, password))
@@ -34,5 +30,5 @@ exports.postLogin = (req, res) => {
         res.send('Email or Password incorrect');
       }
     })
-    .catch(err => res.send(err));
+    .catch(err => next(err));
 };
