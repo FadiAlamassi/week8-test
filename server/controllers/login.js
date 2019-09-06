@@ -7,14 +7,8 @@ require('env2')('config.env');
 exports.renderLogin = (req, res, next) => {
   if (!req.cookies.login) {
     res.sendFile(join(__dirname, '..', '..', 'public', 'login.html'));
-  } else {
-    jwt.verify(req.cookies.login, process.env.SECRET, (err, decoded) => {
-      if (err) next(err);
-      else res.redirect('/cities');
-    })
-  }
-
-};
+  } else { res.redirect('/cities') }
+}
 
 exports.postLogin = (req, res) => {
   getUser(req.body.email)
