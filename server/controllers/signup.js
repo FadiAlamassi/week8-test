@@ -7,7 +7,6 @@ exports.renderSignup = (req, res) => {
 };
 
 exports.postSignup = (req, res) => {
-  console.log(req.body);
   bcrypt.genSalt(10)
     .then(salt => bcrypt.hash(req.body.password, salt))
     .then(hashed => addUser(req.body.email, hashed))

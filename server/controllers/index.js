@@ -12,6 +12,7 @@ router.get('/login', renderLogin);
 router.get('/signup', renderSignup);
 router.post('/login', postLogin)
 router.post('/signup', postSignup)
+router.use(auth);
 router.get('/cities', city.renderCities);
 router.get('/all-cities', city.getAllCities);
 router.post('/add-city', city.add);
