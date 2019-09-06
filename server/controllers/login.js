@@ -22,7 +22,7 @@ exports.postLogin = (req, res) => {
     .then(password => bcrypt.compare(req.body.password, password))
     .then(isEqual => {
       if (isEqual) {
-        const token = jwt.sign({ username: req.body.email }, process.env.SECRET);
+        const token = jwt.sign({ email: req.body.email }, process.env.SECRET);
         res.cookie('login', token);
         res.redirect('/cities');
       }
