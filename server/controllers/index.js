@@ -5,6 +5,7 @@ const city = require('./city');
 const { renderSignup, postSignup } = require('./signup');
 const { renderLogin, postLogin } = require('./login');
 const { auth } = require('./auth');
+const { logout } = require('./logout')
 
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.use(auth);
 router.get('/cities', city.renderCities);
 router.get('/all-cities', city.getAllCities);
 router.post('/add-city', city.add);
+router.get('/logout', logout);
 router.use(error.client);
 router.use(error.server);
 
