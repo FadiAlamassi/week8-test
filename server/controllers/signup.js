@@ -11,5 +11,5 @@ exports.postSignup = (req, res) => {
     .then(salt => bcrypt.hash(req.body.password, salt))
     .then(hashed => addUser(req.body.email, hashed))
     .then(() => res.redirect('/login'))
-    .catch(err => res.status(400).send(err))
+    .catch(err => res.status(400).send(err.message))
 };
